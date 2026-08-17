@@ -1,14 +1,4 @@
-FROM shadowsocks/shadowsocks-libev:latest
-
-USER root
-
-ENV SERVER_ADDR=0.0.0.0
-ENV SERVER_PORT=8080
-ENV PASSWORD=Apex
-ENV METHOD=chacha20-ietf-poly1305
-ENV TIMEOUT=300
-
-EXPOSE 8080/tcp
-EXPOSE 8080/udp
-
-CMD ss-server -s $SERVER_ADDR -p $SERVER_PORT -k $PASSWORD -m $METHOD -t $TIMEOUT -u
+FROM alpine:latest
+RUN apk add --no-cache shadowsocks-libev
+EXPOSE 8388
+CMD ss-server -s 0.0.0.0 -p 8388 -k MySecretPassword999! -m aes-256-gcm
