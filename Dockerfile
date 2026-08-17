@@ -1,0 +1,14 @@
+FROM shadowsocks/shadowsocks-libev:latest
+
+USER root
+
+ENV SERVER_ADDR=0.0.0.0
+ENV SERVER_PORT=8080
+ENV PASSWORD=Apex
+ENV METHOD=chacha20-ietf-poly1305
+ENV TIMEOUT=300
+
+EXPOSE 8080/tcp
+EXPOSE 8080/udp
+
+CMD ss-server -s $SERVER_ADDR -p $SERVER_PORT -k $PASSWORD -m $METHOD -t $TIMEOUT -u
